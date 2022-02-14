@@ -1,0 +1,77 @@
+
+\documentclass[12pt,a4paper]{elsarticle}
+
+%How to remove the line "Preprint submitted to Elsevier"
+%As linhas abaixo servem para remover o comentário de rodapé que vem automaticamente com o template da elsevier
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\let\@oddfoot\@empty
+	\let\@evenfoot\@oddfoot
+}
+\makeatother
+
+
+\usepackage[a4paper,top=2cm, bottom=2cm,right=2cm,left=2cm]{geometry}
+
+\journal{Journal Name}
+
+\begin{document}
+
+	\begin{frontmatter}
+
+
+		
+		\title{Climate change impacts on Brazilian smallholder agriculture: A spatial panel data analysis for maize, bean, cassava and milk }
+		
+		\author{Bruno Cesar Brito Miyamoto\fnref{1}\corref{cor1}}
+   	   %Esse comando adiciona e-mail adress no final da página
+        \ead{miyamototup@gmail.com}
+		\author{Alexandre Gori Maia\fnref{1}\corref{cor1}}
+	   	   %Esse comando adiciona e-mail adress no final da página
+	     \ead{gori@unicamp.br}
+	   	   
+	    %Adress se refere e fnref{1}
+	   \address[1]{UNICAMP,Brasil}
+	   
+		%cortex{cor1} coloca titulo no rodapéo de corresponding author e coloca asterisco nesse título tb 
+		%esse asterisco e por causa do comando \corref{cor1}
+		\cortext[cor1]{Corresponding author}
+		
+	
+		%Adicionando mais de um autor com especificação de email
+		%\author{coco coco\corref{cor1}\fnref{1}} 
+		%\ead{coco.coco@gmail.com}
+		%\author{momo momo\corref{cor1}\fnref{2}}
+		%\ead{momo.momo@gmail.com}
+		%\cortext[cor1]{Corresponding author}
+		
+		%Adicionando apenas uma instituição
+		%\address{UNICAMP,BRAZIL}
+		
+		%Adicionando mais de uma instituição
+		%\address[1]{university 1}
+		%\address[2]{university 2} 
+		
+
+		\begin{abstract}
+			
+			pest and diseases control, variety pf crop that could be raised in some particular areas, farming practices, extreme whether events : heat waves, droughts, strong winds and heavy rains
+		-Climate change - climate change impacts on agriculture - impacts on brazilian agriculture -  how those changes will affect the most vulnerable producers (smallholders famers) -  importance of smallholder for brazilian food production -  objective of the paper - methodology (climatic data interpolation - k means clustering - econometric data panel model)- main results - contribution of the paper
+		
+
+		\end{abstract}
+		
+		\begin{keyword}
+			a \sep b \sep c
+		\end{keyword}
+
+	\end{frontmatter}
+
+
+
+\end{document}
+
+
+

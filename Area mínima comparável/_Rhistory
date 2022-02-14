@@ -1,0 +1,512 @@
+emancipa$NEW_CODE_1970_1997[4658]=emancipa$NEW_CODE_1970_1997[4805]
+emancipa$NEW_CODE_1970_1997[4658]
+emancipa$NEW_CODE_1970_1997[5372]=emancipa$NEW_CODE_1970_1997[5334]
+emancipa$NEW_CODE_1970_1997[5372]
+1+2
+1+5
+1+9
+#AREAS MÍNIMAS COMPARÁVEIS
+#Preciso converter a tabela dadosclimaanobr que está por munícípios para áreas mínimas comparáveis
+#só assim poderei comparar todos os municípios ao longo do tempo
+#Carrega tabela de áreas mínimas comparáveis
+AMC=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável/AMCs.csv")
+AMC=AMC[,c(2,9)]
+#As AMCs são baseadas em uma malha antiga do IBGE. Os dados de produção e climáticos
+#são para os 5565 municípios da base de 2010. Quer dizer que ao compatibiliar AMCs com municípiios
+# vai ter  município sem código de AMCs porque eles podem ter sido criados depois
+# da malha de AMCs que segundo o gori foi criada no começo dos anos 2000
+#Preciso ver qual município se emancipou apos a criação das AMCs e alterar o código manualmente
+# para enviar espaços em branco nos mapas e ausencia de valores nos modelos
+mun5565=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável/5565 municipios.csv",header=T)
+mun5565=mun5565[,c(1,2,5)]
+emancipa=merge(AMC,mun5565,by.x=c('UFMUNDV'),by.y=c('Codigo'),all.x=T,all.y=T)
+View(emancipa)
+emancipa$NEW_CODE_1970_1997[680]=emancipa$NEW_CODE_1970_1997[826]
+emancipa$NEW_CODE_1970_1997[4917]=emancipa$NEW_CODE_1970_1997[4756]
+emancipa$NEW_CODE_1970_1997[4604]=emancipa$NEW_CODE_1970_1997[4633]
+emancipa$NEW_CODE_1970_1997[803]=emancipa$NEW_CODE_1970_1997[882]
+emancipa$NEW_CODE_1970_1997[4611]=emancipa$NEW_CODE_1970_1997[4692]
+emancipa$NEW_CODE_1970_1997[4626]=emancipa$NEW_CODE_1970_1997[4914]
+emancipa$NEW_CODE_1970_1997[1867]=emancipa$NEW_CODE_1970_1997[2201]
+emancipa$NEW_CODE_1970_1997[4649]=emancipa$NEW_CODE_1970_1997[4805]
+emancipa$NEW_CODE_1970_1997[4650]=emancipa$NEW_CODE_1970_1997[4728]
+emancipa$NEW_CODE_1970_1997[5195]=emancipa$NEW_CODE_1970_1997[5182]
+emancipa$NEW_CODE_1970_1997[4658]=emancipa$NEW_CODE_1970_1997[4805]
+emancipa$NEW_CODE_1970_1997[5372]=emancipa$NEW_CODE_1970_1997[5334]
+emancipa$NEW_CODE_1970_1997[820]=emancipa$NEW_CODE_1970_1997[673]
+emancipa$NEW_CODE_1970_1997[1142]=emancipa$NEW_CODE_1970_1997[1237]
+emancipa$NEW_CODE_1970_1997[4684]=emancipa$NEW_CODE_1970_1997[4835]
+emancipa$NEW_CODE_1970_1997[4685]=emancipa$NEW_CODE_1970_1997[4834]
+emancipa$NEW_CODE_1970_1997[4687]=emancipa$NEW_CODE_1970_1997[4975]
+emancipa$NEW_CODE_1970_1997[5210]=emancipa$NEW_CODE_1970_1997[5191]
+emancipa$NEW_CODE_1970_1997[5213]=emancipa$NEW_CODE_1970_1997[5271]
+emancipa$NEW_CODE_1970_1997[4718]=emancipa$NEW_CODE_1970_1997[4878]
+emancipa$NEW_CODE_1970_1997[4722]=emancipa$NEW_CODE_1970_1997[4778]
+emancipa$NEW_CODE_1970_1997[4729]=emancipa$NEW_CODE_1970_1997[4674]
+emancipa$NEW_CODE_1970_1997[1690]=emancipa$NEW_CODE_1970_1997[1741]
+emancipa$NEW_CODE_1970_1997[1690]
+emancipa$NEW_CODE_1970_1997[5216]=emancipa$NEW_CODE_1970_1997[5197]
+emancipa$NEW_CODE_1970_1997[5216]
+emancipa$NEW_CODE_1970_1997[5134]=emancipa$NEW_CODE_1970_1997[5118]
+emancipa$NEW_CODE_1970_1997[4775]=emancipa$NEW_CODE_1970_1997[4835]
+emancipa$NEW_CODE_1970_1997[4775]
+emancipa$NEW_CODE_1970_1997[5408]=emancipa$NEW_CODE_1970_1997[5544]
+emancipa$NEW_CODE_1970_1997[5408]
+emancipa$NEW_CODE_1970_1997[3123]=emancipa$NEW_CODE_1970_1997[3115]
+emancipa$NEW_CODE_1970_1997[3123]
+View(emancipa)
+emancipa$NEW_CODE_1970_1997[2061]=emancipa$NEW_CODE_1970_1997[1865]
+emancipa$NEW_CODE_1970_1997[2061]
+emancipa$NEW_CODE_1970_1997[5430]=emancipa$NEW_CODE_1970_1997[5380]
+emancipa$NEW_CODE_1970_1997[5430]
+emancipa$NEW_CODE_1970_1997[5228]=emancipa$NEW_CODE_1970_1997[5306]
+emancipa$NEW_CODE_1970_1997[5228]
+emancipa$NEW_CODE_1970_1997[5229]=emancipa$NEW_CODE_1970_1997[5306]
+emancipa$NEW_CODE_1970_1997[3217]=emancipa$NEW_CODE_1970_1997[3224]
+emancipa$NEW_CODE_1970_1997[3217]
+emancipa$NEW_CODE_1970_1997[4818]=emancipa$NEW_CODE_1970_1997[5054]
+emancipa$NEW_CODE_1970_1997[4818]
+emancipa$NEW_CODE_1970_1997[4823]=emancipa$NEW_CODE_1970_1997[4908]
+emancipa$NEW_CODE_1970_1997[4823]
+emancipa$NEW_CODE_1970_1997[4831]=emancipa$NEW_CODE_1970_1997[5038]
+emancipa$NEW_CODE_1970_1997[4831]
+emancipa$NEW_CODE_1970_1997[5451]=emancipa$NEW_CODE_1970_1997[5436]
+emancipa$NEW_CODE_1970_1997[4855]=emancipa$NEW_CODE_1970_1997[4667]
+emancipa$NEW_CODE_1970_1997[4855]
+emancipa$NEW_CODE_1970_1997[5250]=emancipa$NEW_CODE_1970_1997[5179]
+emancipa$NEW_CODE_1970_1997[5250]
+emancipa$NEW_CODE_1970_1997[5252]=emancipa$NEW_CODE_1970_1997[5230]
+emancipa$NEW_CODE_1970_1997[5264]=emancipa$NEW_CODE_1970_1997[5299]
+emancipa$NEW_CODE_1970_1997[5264]
+emancipa$NEW_CODE_1970_1997[4893]=emancipa$NEW_CODE_1970_1997[4717]
+emancipa$NEW_CODE_1970_1997[4893]
+emancipa$NEW_CODE_1970_1997[4909]=emancipa$NEW_CODE_1970_1997[4751]
+emancipa$NEW_CODE_1970_1997[4911]=emancipa$NEW_CODE_1970_1997[4753]
+emancipa$NEW_CODE_1970_1997[4939]=emancipa$NEW_CODE_1970_1997[4751]
+emancipa$NEW_CODE_1970_1997[4951]=emancipa$NEW_CODE_1970_1997[5003]
+emancipa$NEW_CODE_1970_1997[4951]
+View(emancipa)
+emancipa$NEW_CODE_1970_1997[5290]=emancipa$NEW_CODE_1970_1997[5191]
+emancipa$NEW_CODE_1970_1997[4964]=emancipa$NEW_CODE_1970_1997[5041]
+emancipa$NEW_CODE_1970_1997[4964]
+emancipa$NEW_CODE_1970_1997[5293]=emancipa$NEW_CODE_1970_1997[5288]
+emancipa$NEW_CODE_1970_1997[4969]=emancipa$NEW_CODE_1970_1997[4988]
+emancipa$NEW_CODE_1970_1997[4999]=emancipa$NEW_CODE_1970_1997[4961]
+emancipa$NEW_CODE_1970_1997[5295]=emancipa$NEW_CODE_1970_1997[5255]
+emancipa$NEW_CODE_1970_1997[5297]=emancipa$NEW_CODE_1970_1997[5261]
+emancipa$NEW_CODE_1970_1997[5011]=emancipa$NEW_CODE_1970_1997[4898]
+emancipa$NEW_CODE_1970_1997[5011]
+emancipa$NEW_CODE_1970_1997[5301]=emancipa$NEW_CODE_1970_1997[5182]
+emancipa$NEW_CODE_1970_1997[5301]
+emancipa$NEW_CODE_1970_1997[5051]=emancipa$NEW_CODE_1970_1997[5089]
+emancipa$NEW_CODE_1970_1997[5051]
+emancipa$NEW_CODE_1970_1997[5311]=emancipa$NEW_CODE_1970_1997[5271]
+emancipa$NEW_CODE_1970_1997[5098]=emancipa$NEW_CODE_1970_1997[5050]
+setwd("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável")
+write.csv(emancipa,file="emancipa",row.names=F)
+names(AMC)
+head(AMC)
+head(emancipa)
+AMC=emancipa[,c(1,2)]
+#milho
+#Converter base de municípios para AMCs
+#O argumento na.strings=c("","NA") faz com que todos os espaços em branco da tabela (que tenham o caracter "-" ) sejam preenchidos por missings
+milho = read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/milho4.csv", header=TRUE, na.strings = c("-","NA"))
+milho=merge(milho,AMC,by.x=c('Codigo'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+milho=aggregate(milho[,c(3)],by=list(AMC=milho$NEW_CODE_1970_1997,Ano=milho$Ano),mean,na.rm=T)
+milho$logmilho=log(milho$x)
+#Faz com que os valores infinitos da coluna logmilho (Inf-Inf) sejam substituídos por NA
+milho$logmilho[!is.finite(milho$logmilho)]=NA
+colnames(milho)[3]="Produtividade"
+#Feijão
+feijao= read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/feijao.csv", header=TRUE, na.strings = c("-","NA"))
+feijao=merge(feijao,AMC,by.x=c('Municipio'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+feijao=aggregate(feijao[,c(3)],by=list(AMC=feijao$NEW_CODE_1970_1997,Ano=feijao$Ano),mean,na.rm=T)
+feijao$logfeijao=log(feijao$x)
+feijao$logfeijao[!is.finite(feijao$logfeijao)]=NA
+colnames(feijao)[3]="Produtividade"
+#Mandioca
+mandioca=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/mandioca.csv", header=TRUE, na.strings = c("-","NA"))
+mandioca=merge(mandioca,AMC, by.x=c('Município'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+mandioca=aggregate(mandioca[,c(3)],by=list(AMC=mandioca$NEW_CODE_1970_1997,Ano=mandioca$Ano),mean,na.rm=T)
+mandioca$logmandioca=log(mandioca$x)
+mandioca$logmandioca[!is.finite(mandioca$logmandioca)]=NA
+colnames(mandioca)[3]="Produtividade"
+#######Produtividade do leite
+#Vacas ordenhadas
+vacasordenhadas=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/vacas ordenhadas.csv",header=T,na.strings = c("-","NA"))
+vacasordenhadas=merge(vacasordenhadas,AMC,by.x=c('Municipio'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+vacasordenhadas=aggregate(vacasordenhadas[,c(3)],by=list(AMC=vacasordenhadas$NEW_CODE_1970_1997,Ano=vacasordenhadas$Ano),sum,na.rm=T)
+colnames(vacasordenhadas)[3]="Numero de vacas"
+# Produção de leite
+leite = read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/leite.csv", header=TRUE, na.strings = c("-","NA"))
+leite=merge(leite,AMC,by.x=c('Codigo'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+leite=aggregate(leite[,c(5)],by=list(AMC=leite$NEW_CODE_1970_1997,Ano=leite$Ano),sum,na.rm=T)
+colnames(leite)[3]="Producao de leite"
+#Produtividade do leite
+leite=merge(leite,vacasordenhadas,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'),all.x=T,all.y=T)
+leite$produtividade=leite$`Producao de leite`/leite$`Numero de vacas`
+leite$logprodutividade=log(leite$produtividade)
+leite$produtividade[!is.finite(leite$produtividade)]=NA
+leite$logprodutividade[!is.finite(leite$logprodutividade)]=NA
+#Carrega dados climáticos
+load("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/dadosclimaanobr.RData")
+dadosclimaanobr=merge(dadosclimaanobr,AMC, by.x=c('Codigo'),by.y=('UFMUNDV'),all.x=T,all.y=T)
+#Agora pego apenas as variáveis que me interessa da tabela dadosclimaanobr
+clima=dadosclimaanobr[,c(1,4:8,10,12,17,19,21)]
+colnames(clima)=c("Codigo","Ano","Tmax","Tmin","Tme","Umidade","Preciptot","semchuva","maisde10mm","diaseco4","AMC")
+clima=aggregate(clima[,c(3:10)],by=list(AMC=clima$AMC,Ano=clima$Ano),mean,na.rm=T)
+#Tenho que selecionar os dados da tabela clima superiores a 1990, que é quando
+#começam as três séries de produção apesar. Apesar do leite começar  em 74,
+# é bom padronizar o ano de início dos clusters
+lclima=split(clima,paste(clima$Ano))
+clima=do.call(rbind.data.frame,lclima[30:54])
+##################Clusterizar
+#Agora eu crio um cluster com base em todo o período. Mas só posso deixar na tabela clusteriza
+#as variáveis climáticas
+clusteriza=clima[,c(3:10)]
+#O cluster criado exploca 90,7% da variabilidade
+cluster=kmeans(clusteriza,5)
+#Agora a tabela clima recebe o valor dos clusters
+clima$clusters=cluster$cluster
+#Criar binárias para clusters
+#acho que além de salvar os valores dos clusters eu tenho que criar quatro binárias, mantendo o
+#o primeiro cluster como referência. Depois faço regresssão em função das binárias.
+#Eu criei cinco binárias mas na verdade só preciso de 4 (C2 a C5). C1 é só para questões de
+#contabilização
+clima$C1=0
+clima$C2=0
+clima$C3=0
+clima$C4=0
+clima$C5=0
+clima$C1[(clima$clusters==1)]=1
+clima$C2[(clima$clusters==2)]=1
+clima$C3[(clima$clusters==3)]=1
+clima$C4[(clima$clusters==4)]=1
+clima$C5[(clima$clusters==5)]=1
+cluster
+cluster$centers
+#Preciso montar uma tabela com a quantidade de municípios nos clusters em cada ano
+muncluster=aggregate(clima[c(12:16)],by=list(clima$Ano),sum,na.rm=T)
+#setwd("/home/bmiyamoto/Área de trabalho")
+#write.csv(muncluster,file="AMC por cluster",row.names=F)
+plot(C1 ~ Group.1,data=muncluster)
+c1=lm(formula=C1 ~ Group.1,data=muncluster)
+abline(c1)
+plot(C2 ~ Group.1,data=muncluster)
+c2=lm(formula=C2 ~ Group.1,data=muncluster)
+abline(c2)
+plot(C3 ~ Group.1,data=muncluster)
+c3=lm(formula=C3 ~ Group.1,data=muncluster)
+abline(c3)
+plot(C4 ~ Group.1,data=muncluster)
+c4=lm(formula=C4 ~ Group.1,data=muncluster)
+abline(c4)
+plot(C5 ~ Group.1,data=muncluster)
+c5=lm(formula=C5 ~ Group.1,data=muncluster)
+abline(c5)
+######Mapas
+#Ideias
+# Gerar um mapa por municipios, com a cor de qual cluter o municipio é mais
+# classificado.
+#gerar um mapa só levando em conta o cluster 3. Ai eu crio faixas (cinco ou seis),
+# com o número de vezes que o município foi classificado no cluster, indo do amarelo
+# ao mais vermelho. De certa forma vou ter regiões de risco de seca
+library(maptools)
+#Malha de municípios
+municipios=readShapeSpatial(file.choose())
+#Para adicionar contornos no mapa final preciso adicionar o shape file dos estados
+estados=readShapeSpatial(file.choose())
+#Fazer mapa com os cluster que aparecem mais vezes em cada municipio ao longo do tempo
+munclustermap=aggregate(clima[,c(12:16)],by=list(AMC=clima$AMC),sum,na.rm=T)
+l2= split(munclustermap, paste(munclustermap$AMC))
+for (i in 1:length(l2)){
+C1=l2[[i]]$C1
+C2=l2[[i]]$C2
+C3=l2[[i]]$C3
+C4=l2[[i]]$C4
+C5=l2[[i]]$C5
+maximo=max(C1,C2,C3,C4,C5)
+if (maximo==C1){
+l2[[i]]$cluster=1
+}
+if (maximo==C3){
+l2[[i]]$cluster=3
+}
+if (maximo==C4){
+l2[[i]]$cluster=4
+}
+if (maximo==C5){
+l2[[i]]$cluster=5
+}
+if (maximo==C2){
+l2[[i]]$cluster=2
+}
+}
+munclustermap=do.call(rbind.data.frame,l2)
+#Agora preciso converter AMCs em municípios novamente e atribuir o código do cluster mais
+#frequente aos municípios
+munamcs=merge(munclustermap,AMC,by.x=c('AMC'),by.y=c('NEW_CODE_1970_1997'))
+municipiosc=municipios
+dados=municipiosc@data
+dados$ordem=0:(dim(dados)[1]-1)
+dadosc=munamcs[,c(8,7)]
+dadosc$cor[(dadosc$cluster==4)]=as.character("darkgreen")
+dadosc$cor[(dadosc$cluster==3)]=as.character("red2")
+dadosc$cor[(dadosc$cluster==1)]=as.character("yellow2")
+dadosc$cor[(dadosc$cluster==5)]=as.character("green3")
+dadosc$cor[(dadosc$cluster==2)]=as.character("blue4")
+dadosfinais=merge(dados,dadosc,by.x=c("codigo_ibg"),by.y=("UFMUNDV"),all.x=T)
+dadosfinais=dadosfinais[,c(2:7,1,8:10)]
+dadosfinais=dadosfinais[order(dadosfinais$ordem),]
+dadosfinais=dadosfinais[,c(1:7,9,10)]
+municipiosc@data=dadosfinais
+plot(municipiosc, border=F,lwd=.1, axes=FALSE,las=1,col=municipiosc@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+library(plm)
+#Os melhores resultados estão vindo com os modelos de primeira diferença
+#Painel mandioca
+mandioca=merge(mandioca,clima,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'))
+#Minha variável dependente é logmilho
+Ymc=cbind(mandioca[,c(4)])
+#Minhas variáveis dependentes iniciais
+Xmc=cbind(mandioca$C2,mandioca$C3,mandioca$C4,mandioca$C5)
+pdata=plm.data(mandioca[,c(1,2)], c("AMC","Ano"))
+#Rodar modelo de primeira diferenças
+mandiocapd=plm(Ymc ~ Xmc, data=pdata, model="fd")
+summary(mandiocapd)
+#Painel milho
+milho=merge(milho,clima,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'))
+#Minha variável dependente é logmilho
+Ym=cbind(milho[,c(4)])
+#Minhas variáveis dependentes iniciais
+Xm=cbind(milho$C2,milho$C3,milho$C4,milho$C5)
+pdata=plm.data(milho[,c(1,2)], c("AMC","Ano"))
+#Rodar modelo de primeira diferenças
+milhopd=plm(Ym ~ Xm, data=pdata, model="fd")
+summary(milhopd)
+#Painel Feijão
+feijao=merge(feijao,clima,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'))
+Yf=cbind(feijao[,c(4)])
+Xf=cbind(feijao$C2,feijao$C3,feijao$C4,feijao$C5)
+pdata=plm.data(feijao[,c(1,2)], c("AMC","Ano"))
+#Pooled
+#Rodar modelo de primeira diferenças
+feijaopd=plm(Yf ~ Xf, data=pdata, model="fd")
+summary(feijaopd)
+#Rodar modelo de primeira diferenças
+leitepd=plm(Yl ~ Xl, data=pdata, model="fd")
+summary(leitepd)
+#Painel Leite
+leite=merge(leite,clima,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'))
+Yl=cbind(leite[,c(6)])
+Xl=cbind(leite$C2,leite$C3,leite$C4,leite$C5)
+pdata=plm.data(leite[,c(1,2)], c("AMC","Ano"))
+#Pooled
+#Rodar modelo de primeira diferenças
+leitepd=plm(Yl ~ Xl, data=pdata, model="fd")
+summary(leitepd)
+View(feijao)
+View(leite)
+summary(mandiocapd)
+#Mapa de temperatura - Cluster 1
+municipiosc1=municipios
+dados=municipiosc1@data
+dados$ordem=0:(dim(dados)[1]-1)
+munclusterc1a=aggregate(clima[,c(12)],by=list(AMC=clima$AMC),sum,na.rm=T)
+colnames(munclusterc1a)[2]="C1"
+munclusterc1=merge(munclusterc1a,AMC,by.x=c('AMC'),by.y=c('NEW_CODE_1970_1997'))
+munclusterc1$cor[(munclusterc1$C1==0)]="darkgreen"
+munclusterc1$cor[(munclusterc1$C1>=1&munclusterc1$C1<5)]="green"
+munclusterc1$cor[(munclusterc1$C1>=5&munclusterc1$C1<10)]="yellow"
+munclusterc1$cor[(munclusterc1$C1>=10&munclusterc1$C1<15)]="orange"
+munclusterc1$cor[(munclusterc1$C1>=15&munclusterc1$C1<20)]="darkorange3"
+munclusterc1$cor[(munclusterc1$C1>=20)]="red"
+dadosfinais=merge(dados,munclusterc1,by.x=c("codigo_ibg"),by.y=c("UFMUNDV"),all.x=T)
+dadosfinais=dadosfinais[,c(2:7,1,8,10,11)]
+dadosfinais=dadosfinais[order(dadosfinais$ordem),]
+dadosfinais=dadosfinais[,c(1:7,9,10)]
+municipiosc1@data=dadosfinais
+plot(municipiosc1, border=F,lwd=.1, axes=FALSE,las=1,col=municipiosc1@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+cluster$centers
+#Mapa de temperatura - Cluster 3
+municipiosc3=municipios
+dados=municipiosc3@data
+dados$ordem=0:(dim(dados)[1]-1)
+munclusterc3a=aggregate(clima[,c(14)],by=list(AMC=clima$AMC),sum,na.rm=T)
+colnames(munclusterc3a)[2]="C3"
+munclusterc3=merge(munclusterc3a,AMC,by.x=c('AMC'),by.y=c('NEW_CODE_1970_1997'))
+munclusterc3$cor[(munclusterc3$C3==0)]="darkgreen"
+munclusterc3$cor[(munclusterc3$C3>=1&munclusterc3$C3<5)]="green"
+munclusterc3$cor[(munclusterc3$C3>=5&munclusterc3$C3<10)]="yellow"
+munclusterc3$cor[(munclusterc3$C3>=10&munclusterc3$C3<15)]="orange"
+munclusterc3$cor[(munclusterc3$C3>=15&munclusterc3$C3<20)]="darkorange3"
+munclusterc3$cor[(munclusterc3$C3>=20)]="red"
+dadosfinais=merge(dados,munclusterc3,by.x=c("codigo_ibg"),by.y=c("UFMUNDV"),all.x=T)
+dadosfinais=dadosfinais[,c(2:7,1,8,10,11)]
+dadosfinais=dadosfinais[order(dadosfinais$ordem),]
+dadosfinais=dadosfinais[,c(1:7,9,10)]
+municipiosc3@data=dadosfinais
+plot(municipiosc3, border=F,lwd=.1, axes=FALSE,las=1,col=municipiosc3@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+a=cluster
+#AREAS MÍNIMAS COMPARÁVEIS
+#Preciso converter a tabela dadosclimaanobr que está por munícípios para áreas mínimas comparáveis
+#só assim poderei comparar todos os municípios ao longo do tempo
+#Carrega tabela de áreas mínimas comparáveis
+AMC=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável/AMCs.csv")
+AMC=AMC[,c(2,9)]
+#As AMCs são baseadas em uma malha antiga do IBGE. Os dados de produção e climáticos
+#são para os 5565 municípios da base de 2010. Quer dizer que ao compatibiliar AMCs com municípiios
+# vai ter  município sem código de AMCs porque eles podem ter sido criados depois
+# da malha de AMCs que segundo o gori foi criada no começo dos anos 2000
+#Preciso ver qual município se emancipou apos a criação das AMCs e alterar o código manualmente
+# para enviar espaços em branco nos mapas e ausencia de valores nos modelos
+mun5565=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável/5565 municipios.csv",header=T)
+mun5565=mun5565[,c(1,2,5)]
+emancipa=merge(AMC,mun5565,by.x=c('UFMUNDV'),by.y=c('Codigo'),all.x=T,all.y=T)
+emancipa$NEW_CODE_1970_1997[680]=emancipa$NEW_CODE_1970_1997[826]
+emancipa$NEW_CODE_1970_1997[4917]=emancipa$NEW_CODE_1970_1997[4756]
+emancipa$NEW_CODE_1970_1997[4604]=emancipa$NEW_CODE_1970_1997[4633]
+emancipa$NEW_CODE_1970_1997[803]=emancipa$NEW_CODE_1970_1997[882]
+emancipa$NEW_CODE_1970_1997[4611]=emancipa$NEW_CODE_1970_1997[4692]
+emancipa$NEW_CODE_1970_1997[4626]=emancipa$NEW_CODE_1970_1997[4914]
+emancipa$NEW_CODE_1970_1997[1867]=emancipa$NEW_CODE_1970_1997[2201]
+emancipa$NEW_CODE_1970_1997[4649]=emancipa$NEW_CODE_1970_1997[4805]
+emancipa$NEW_CODE_1970_1997[4650]=emancipa$NEW_CODE_1970_1997[4728]
+emancipa$NEW_CODE_1970_1997[5195]=emancipa$NEW_CODE_1970_1997[5182]
+emancipa$NEW_CODE_1970_1997[4658]=emancipa$NEW_CODE_1970_1997[4805]
+emancipa$NEW_CODE_1970_1997[5372]=emancipa$NEW_CODE_1970_1997[5334]
+emancipa$NEW_CODE_1970_1997[820]=emancipa$NEW_CODE_1970_1997[673]
+emancipa$NEW_CODE_1970_1997[1142]=emancipa$NEW_CODE_1970_1997[1237]
+emancipa$NEW_CODE_1970_1997[4684]=emancipa$NEW_CODE_1970_1997[4835]
+emancipa$NEW_CODE_1970_1997[4685]=emancipa$NEW_CODE_1970_1997[4834]
+emancipa$NEW_CODE_1970_1997[4687]=emancipa$NEW_CODE_1970_1997[4975]
+emancipa$NEW_CODE_1970_1997[5210]=emancipa$NEW_CODE_1970_1997[5191]
+emancipa$NEW_CODE_1970_1997[5213]=emancipa$NEW_CODE_1970_1997[5271]
+emancipa$NEW_CODE_1970_1997[4718]=emancipa$NEW_CODE_1970_1997[4878]
+emancipa$NEW_CODE_1970_1997[4722]=emancipa$NEW_CODE_1970_1997[4778]
+emancipa$NEW_CODE_1970_1997[4729]=emancipa$NEW_CODE_1970_1997[4674]
+emancipa$NEW_CODE_1970_1997[1690]=emancipa$NEW_CODE_1970_1997[1741]
+emancipa$NEW_CODE_1970_1997[5216]=emancipa$NEW_CODE_1970_1997[5197]
+emancipa$NEW_CODE_1970_1997[5134]=emancipa$NEW_CODE_1970_1997[5118]
+emancipa$NEW_CODE_1970_1997[4775]=emancipa$NEW_CODE_1970_1997[4835]
+emancipa$NEW_CODE_1970_1997[5408]=emancipa$NEW_CODE_1970_1997[5544]
+emancipa$NEW_CODE_1970_1997[3123]=emancipa$NEW_CODE_1970_1997[3115]
+emancipa$NEW_CODE_1970_1997[2061]=emancipa$NEW_CODE_1970_1997[1865]
+emancipa$NEW_CODE_1970_1997[5430]=emancipa$NEW_CODE_1970_1997[5380]
+emancipa$NEW_CODE_1970_1997[5228]=emancipa$NEW_CODE_1970_1997[5306]
+emancipa$NEW_CODE_1970_1997[5229]=emancipa$NEW_CODE_1970_1997[5306]
+emancipa$NEW_CODE_1970_1997[3217]=emancipa$NEW_CODE_1970_1997[3224]
+emancipa$NEW_CODE_1970_1997[4818]=emancipa$NEW_CODE_1970_1997[5054]
+emancipa$NEW_CODE_1970_1997[4823]=emancipa$NEW_CODE_1970_1997[4908]
+emancipa$NEW_CODE_1970_1997[4831]=emancipa$NEW_CODE_1970_1997[5038]
+emancipa$NEW_CODE_1970_1997[5451]=emancipa$NEW_CODE_1970_1997[5436]
+emancipa$NEW_CODE_1970_1997[4855]=emancipa$NEW_CODE_1970_1997[4667]
+emancipa$NEW_CODE_1970_1997[5250]=emancipa$NEW_CODE_1970_1997[5179]
+emancipa$NEW_CODE_1970_1997[5252]=emancipa$NEW_CODE_1970_1997[5230]
+emancipa$NEW_CODE_1970_1997[5264]=emancipa$NEW_CODE_1970_1997[5299]
+emancipa$NEW_CODE_1970_1997[4893]=emancipa$NEW_CODE_1970_1997[4717]
+emancipa$NEW_CODE_1970_1997[4909]=emancipa$NEW_CODE_1970_1997[4751]
+emancipa$NEW_CODE_1970_1997[4911]=emancipa$NEW_CODE_1970_1997[4753]
+emancipa$NEW_CODE_1970_1997[4939]=emancipa$NEW_CODE_1970_1997[4751]
+emancipa$NEW_CODE_1970_1997[4951]=emancipa$NEW_CODE_1970_1997[5003]
+emancipa$NEW_CODE_1970_1997[5290]=emancipa$NEW_CODE_1970_1997[5191]
+emancipa$NEW_CODE_1970_1997[4964]=emancipa$NEW_CODE_1970_1997[5041]
+emancipa$NEW_CODE_1970_1997[5293]=emancipa$NEW_CODE_1970_1997[5288]
+emancipa$NEW_CODE_1970_1997[4969]=emancipa$NEW_CODE_1970_1997[4988]
+emancipa$NEW_CODE_1970_1997[4999]=emancipa$NEW_CODE_1970_1997[4961]
+emancipa$NEW_CODE_1970_1997[5295]=emancipa$NEW_CODE_1970_1997[5255]
+emancipa$NEW_CODE_1970_1997[5297]=emancipa$NEW_CODE_1970_1997[5261]
+emancipa$NEW_CODE_1970_1997[5011]=emancipa$NEW_CODE_1970_1997[4898]
+emancipa$NEW_CODE_1970_1997[5301]=emancipa$NEW_CODE_1970_1997[5182]
+emancipa$NEW_CODE_1970_1997[5051]=emancipa$NEW_CODE_1970_1997[5089]
+emancipa$NEW_CODE_1970_1997[5311]=emancipa$NEW_CODE_1970_1997[5271]
+emancipa$NEW_CODE_1970_1997[5098]=emancipa$NEW_CODE_1970_1997[5050]
+#Aqui só salvei por medo de perder trabalho caso a númeração das linhas das tabelas mude
+#da próxima vez que eu reiniciar o computador
+setwd("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Area mínima comparável")
+write.csv(emancipa,file="emancipa",row.names=F)
+AMC=emancipa[,c(1,2)]
+#milho
+#Converter base de municípios para AMCs
+#O argumento na.strings=c("","NA") faz com que todos os espaços em branco da tabela (que tenham o caracter "-" ) sejam preenchidos por missings
+milho = read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/milho4.csv", header=TRUE, na.strings = c("-","NA"))
+milho=merge(milho,AMC,by.x=c('Codigo'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+milho=aggregate(milho[,c(3)],by=list(AMC=milho$NEW_CODE_1970_1997,Ano=milho$Ano),mean,na.rm=T)
+milho$logmilho=log(milho$x)
+#Faz com que os valores infinitos da coluna logmilho (Inf-Inf) sejam substituídos por NA
+milho$logmilho[!is.finite(milho$logmilho)]=NA
+colnames(milho)[3]="Produtividade"
+#Feijão
+feijao= read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/feijao.csv", header=TRUE, na.strings = c("-","NA"))
+feijao=merge(feijao,AMC,by.x=c('Municipio'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+feijao=aggregate(feijao[,c(3)],by=list(AMC=feijao$NEW_CODE_1970_1997,Ano=feijao$Ano),mean,na.rm=T)
+feijao$logfeijao=log(feijao$x)
+feijao$logfeijao[!is.finite(feijao$logfeijao)]=NA
+colnames(feijao)[3]="Produtividade"
+#Mandioca
+mandioca=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/mandioca.csv", header=TRUE, na.strings = c("-","NA"))
+mandioca=merge(mandioca,AMC, by.x=c('Município'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+mandioca=aggregate(mandioca[,c(3)],by=list(AMC=mandioca$NEW_CODE_1970_1997,Ano=mandioca$Ano),mean,na.rm=T)
+mandioca$logmandioca=log(mandioca$x)
+mandioca$logmandioca[!is.finite(mandioca$logmandioca)]=NA
+colnames(mandioca)[3]="Produtividade"
+#######Produtividade do leite
+#Vacas ordenhadas
+vacasordenhadas=read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/vacas ordenhadas.csv",header=T,na.strings = c("-","NA"))
+vacasordenhadas=merge(vacasordenhadas,AMC,by.x=c('Municipio'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+vacasordenhadas=aggregate(vacasordenhadas[,c(3)],by=list(AMC=vacasordenhadas$NEW_CODE_1970_1997,Ano=vacasordenhadas$Ano),sum,na.rm=T)
+colnames(vacasordenhadas)[3]="Numero de vacas"
+# Produção de leite
+leite = read.csv("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/leite.csv", header=TRUE, na.strings = c("-","NA"))
+leite=merge(leite,AMC,by.x=c('Codigo'),by.y=c('UFMUNDV'),all.x=T,all.y=T)
+leite=aggregate(leite[,c(5)],by=list(AMC=leite$NEW_CODE_1970_1997,Ano=leite$Ano),sum,na.rm=T)
+colnames(leite)[3]="Producao de leite"
+#Produtividade do leite
+leite=merge(leite,vacasordenhadas,by.x=c('AMC','Ano'),by.y=c('AMC','Ano'),all.x=T,all.y=T)
+leite$produtividade=leite$`Producao de leite`/leite$`Numero de vacas`
+leite$logprodutividade=log(leite$produtividade)
+leite$produtividade[!is.finite(leite$produtividade)]=NA
+leite$logprodutividade[!is.finite(leite$logprodutividade)]=NA
+#Carrega dados climáticos
+load("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/dadosclimaanobr.RData")
+dadosclimaanobr=merge(dadosclimaanobr,AMC, by.x=c('Codigo'),by.y=('UFMUNDV'),all.x=T,all.y=T)
+#Agora pego apenas as variáveis que me interessa da tabela dadosclimaanobr
+clima=dadosclimaanobr[,c(1,4:8,10,12,17,19,21)]
+colnames(clima)=c("Codigo","Ano","Tmax","Tmin","Tme","Umidade","Preciptot","semchuva","maisde10mm","diaseco4","AMC")
+clima=aggregate(clima[,c(3:10)],by=list(AMC=clima$AMC,Ano=clima$Ano),mean,na.rm=T)
+#Tenho que selecionar os dados da tabela clima superiores a 1990, que é quando
+#começam as três séries de produção apesar. Apesar do leite começar  em 74,
+# é bom padronizar o ano de início dos clusters
+lclima=split(clima,paste(clima$Ano))
+clima=do.call(rbind.data.frame,lclima[30:54])
+##################Clusterizar
+#Agora eu crio um cluster com base em todo o período. Mas só posso deixar na tabela clusteriza
+#as variáveis climáticas
+clusteriza=clima[,c(3:10)]
+#O cluster criado exploca 90,7% da variabilidade
+cluster=kmeans(clusteriza,5)
+#Agora a tabela clima recebe o valor dos clusters
+clima$clusters=cluster$cluster
+#Criar binárias para clusters
+#acho que além de salvar os valores dos clusters eu tenho que criar quatro binárias, mantendo o
+#o primeiro cluster como referência. Depois faço regresssão em função das binárias.
+#Eu criei cinco binárias mas na verdade só preciso de 4 (C2 a C5). C1 é só para questões de
+#contabilização
+clima$C1=0
+clima$C2=0
+clima$C3=0
+clima$C4=0
+clima$C5=0
+clima$C1[(clima$clusters==1)]=1
+clima$C2[(clima$clusters==2)]=1
+clima$C3[(clima$clusters==3)]=1
+clima$C4[(clima$clusters==4)]=1
+clima$C5[(clima$clusters==5)]=1
+cluster
+cluster$centers
+a$centers
+a$size
+cluster$size
