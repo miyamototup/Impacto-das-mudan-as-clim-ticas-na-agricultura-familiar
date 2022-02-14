@@ -1,0 +1,512 @@
+cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+#Dias com nível de chuva superiora 25mm
+maisde25mmmun=municipios
+dadosmaisde25mm=maisde25mmmun@data
+dadosmaisde25mm$ordem=1:dim(maisde25mmmun)[1]
+dadosmaisde25mm=merge(dadosmaisde25mm,AMC, by.x=c('codigo_ibg'),by.y=c('UFMUNDV'))
+dadosmaisde25mm=merge(dadosmaisde25mm,Tmaisde25mm,by.x=c('NEW_CODE_1970_1997'),by.y=c('AMC'))
+dadosmaisde25mm$cor[dadosmaisde25mm$Tmaisde25mm<=-0.01]="lightskyblue"
+dadosmaisde25mm$cor[dadosmaisde25mm$Tmaisde25mm>-0.01&dadosmaisde25mm$Tmaisde25mm<0]="royalblue3"
+dadosmaisde25mm$cor[dadosmaisde25mm$Tmaisde25mm<=0.01&dadosmaisde25mm$Tmaisde25mm>0]="royalblue4"
+dadosmaisde25mm$cor[dadosmaisde25mm$Tmaisde25mm>0.01]="navy"
+dadosmaisde25mm=dadosmaisde25mm[order(dadosmaisde25mm$ordem),]
+maisde25mmmun@data=dadosmaisde25mm
+plot(maisde25mmmun,border=F,lwd=.1,axes=F,las=1,col=maisde25mmmun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -1%","-1% a 0%","0% a 1%","Superior a 1%"))
+cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+#Número de dias consecutivos sem chover
+#diasecomun=municipios
+#dadosdiaseco=diasecomun@data
+#dadosdiaseco$ordem=1:dim(dadosdiaseco)[1]
+#dadosdiaseco=merge(dadosdiaseco,AMC, by.x=c('codigo_ibg'), by.y=c('UFMUNDV'))
+#dadosdiaseco=merge(dadosdiaseco,Tdiaseco,by.x=c('NEW_CODE_1970_1997'), by.y=c('AMC'))
+#dadosdiaseco$cor[dadosdiaseco$Tdiaseco<=-0.01]="lightskyblue"
+#dadosdiaseco$cor[dadosdiaseco$Tdiaseco>-0.01&dadosdiaseco$Tdiaseco<0]="royalblue3"
+#dadosdiaseco$cor[dadosdiaseco$Tdiaseco<=0.01&dadosdiaseco$Tdiaseco>0]="royalblue4"
+#dadosdiaseco$cor[dadosdiaseco$Tdiaseco>0.01]="navy"
+#dadosdiaseco=dadosdiaseco[order(dadosdiaseco$ordem),]
+#diasecomun@data=dadosdiaseco
+#plot(diasecomun,border=F,lwd=.1,axes=F,las=1,col=diasecomun@data$cor)
+#plot(estados,add=TRUE,lwd=0.5)
+#legenda
+#legenda=as.character(c("Inferior a -1%","-1% a 0%","0% a 1%","Superior a 1%"))
+#cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+#library(maps)
+#map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+#source(compassRose(-44.4,-26.5))
+#Carregar biblioteca para ACM
+library(FactoMineR)
+#Criar tabela com categorias climáticas e unidade da federação a qual pertence
+# a AMC
+Tprecip$catprecipt[Tprecip$Tprecip<=-0.01]="(--)Precipitação"
+Tprecip$catprecipt[Tprecip$Tprecip>-0.01&Tprecip$Tprecip<0]="(-)Precipitação"
+Tprecip$catprecipt[Tprecip$Tprecip<0.01&Tprecip$Tprecip>0]="(+)Precipitação"
+Tprecip$catprecipt[Tprecip$Tprecip>0.01]="(++)Precipitação"
+Tprecipcat=Tprecip[,c(1,3)]
+Tsemchuva$catsemchuva[Tsemchuva$Tsemchuva<=-0.01]="(--)Dias sem chuva"
+Tsemchuva$catsemchuva[Tsemchuva$Tsemchuva>-0.01&Tsemchuva$Tsemchuva<0]="(-)Dias sem chuva"
+Tsemchuva$catsemchuva[Tsemchuva$Tsemchuva<0.01&Tsemchuva$Tsemchuva>0]="(+)Dias sem chuva"
+Tsemchuva$catsemchuva[Tsemchuva$Tsemchuva>0.01]="(++)Dias sem chuva"
+Tsemchuvacat=Tsemchuva[,c(1,3)]
+Tmaisde25mm$catmaisde25mm[Tmaisde25mm$Tmaisde25mm<=-0.01]="(--)Mais de 25mm"
+Tmaisde25mm$catmaisde25mm[Tmaisde25mm$Tmaisde25mm>-0.01&Tmaisde25mm$Tmaisde25mm<0]="(-)Mais de 25mm"
+Tmaisde25mm$catmaisde25mm[Tmaisde25mm$Tmaisde25mm<0.01&Tmaisde25mm$Tmaisde25mm>0]="(+)Mais de 25mm"
+Tmaisde25mm$catmaisde25mm[Tmaisde25mm$Tmaisde25mm>0.01]="(++)Mais de 25mm"
+Tmaisde25mmcat=Tmaisde25mm[,c(1,3)]
+UF=municipios@data
+UF=merge(UF,AMC, by.x=c('codigo_ibg'),by.y=c('UFMUNDV'))
+UF=UF[,c(8,4)]
+colnames(UF)=c("AMC","UF")
+catchuva=merge(UF,Tprecipcat,by=c('AMC'))
+catchuva=merge(catchuva,Tsemchuvacat,by=c('AMC'))
+catchuva=merge(catchuva,Tmaisde25mmcat,by=c('AMC'))
+#catchuva$reg[catchuva$UF=="RS"|catchuva$UF=="PR"|catchuva$UF=="SC"]="Sul"
+#catchuva$reg[catchuva$UF=="SP"|catchuva$UF=="MG"|catchuva$UF=="RJ"|catchuva$UF=="ES"]="Sudeste"
+#catchuva$reg[catchuva$UF=="MS"|catchuva$UF=="MT"|catchuva$UF=="GO"|catchuva$UF=="DF"]="Centro-oeste"
+#catchuva$reg[catchuva$UF=="AC"|catchuva$UF=="AM"|catchuva$UF=="AP"|catchuva$UF=="PA"|catchuva$UF=="RO"|catchuva$UF=="RR"|catchuva$UF=="TO"]="Norte"
+#catchuva$reg[catchuva$UF=="AL"|catchuva$UF=="BA"|catchuva$UF=="CE"|catchuva$UF=="MA"|catchuva$UF=="PB"|catchuva$UF=="PE"|catchuva$UF=="PI"|catchuva$UF=="RN"|catchuva$UF=="SE"]="Nordeste"
+catchuva=unique(catchuva)
+#Categorias para o milho
+Tmilho$catmilho[Tmilho$Tmilho<=-0.10]="MI(prod<-10%)"
+Tmilho$catmilho[Tmilho$Tmilho<=0&Tmilho$Tmilho>-0.10]="MI(-10%<prod<0%)"
+Tmilho$catmilho[Tmilho$Tmilho<=0.05&Tmilho$Tmilho>0]="MI(0%<prod<5%)"
+Tmilho$catmilho[Tmilho$Tmilho<=0.15&Tmilho$Tmilho>0.05]="MI(5%<prod<15%)"
+Tmilho$catmilho[Tmilho$Tmilho>0.15]="MI(prod>15%)"
+catmilho=Tmilho[,c(1,3)]
+#Feijao
+Tfeijao$catfeijao[Tfeijao$Tfeijao<=-0.10]="F(prod<-10%)"
+Tfeijao$catfeijao[Tfeijao$Tfeijao<=0&Tfeijao$Tfeijao>-0.10]="F(-10%<prod<0%)"
+Tfeijao$catfeijao[Tfeijao$Tfeijao<=0.05&Tfeijao$Tfeijao>0]="F(0%<prod<5%)"
+Tfeijao$catfeijao[Tfeijao$Tfeijao<=0.15&Tfeijao$Tfeijao>0.05]="F(5%<prod<15%)"
+Tfeijao$catfeijao[Tfeijao$Tfeijao>0.15]="F(prod>15%)"
+catfeijao=Tfeijao[,c(1,3)]
+#mandioca
+Tmandioca$catmandioca[Tmandioca$Tmandioca<=-0.10]="MA(prod<-10%)"
+Tmandioca$catmandioca[Tmandioca$Tmandioca<=0&Tmandioca$Tmandioca>-0.10]="MA(-10%<prod<0%)"
+Tmandioca$catmandioca[Tmandioca$Tmandioca<=0.05&Tmandioca$Tmandioca>0]="MA(0%<prod<5%)"
+Tmandioca$catmandioca[Tmandioca$Tmandioca<=0.15&Tmandioca$Tmandioca>0.05]="MA(5%<prod<15%)"
+Tmandioca$catmandioca[Tmandioca$Tmandioca>0.15]="MA(prod>15%)"
+catmandioca=Tmandioca[,c(1,3)]
+#leite
+Tleite$catleite[Tleite$Tleite<=-0.10]="L(prod<-10%)"
+Tleite$catleite[Tleite$Tleite<=0&Tleite$Tleite>-0.10]="L(-10%<prod<0%)"
+Tleite$catleite[Tleite$Tleite<=0.05&Tleite$Tleite>0]="L(0%<prod<5%)"
+Tleite$catleite[Tleite$Tleite<=0.10&Tleite$Tleite>0.05]="L(5%<prod<10%)"
+Tleite$catleite[Tleite$Tleite>0.10]="L(prod>10%)"
+catleite=Tleite[,c(1,3)]
+#ACM para milho
+ACMmilho=merge(catmilho,catchuva,by=c('AMC'))
+ACMmilho=ACMmilho[,c(2,4:6)]
+ACMmilho=data.frame(lapply(ACMmilho,factor))
+catsmilho=apply(ACMmilho, 2, function(x) nlevels(as.factor(x)))
+#ACM
+ACMTmilho=MCA(ACMmilho,ncp=15,graph=F)
+#Clusterização hierarquica
+clustermilho=HCPC(ACMTmilho,metric="euclidean",method="ward",nb.clust = 8,graph=F)
+#ACM para mandioca
+ACMmandioca=merge(catmandioca,catchuva,by=c('AMC'))
+ACMmandioca=ACMmandioca[,c(2,4:6)]
+ACMmandioca=data.frame(lapply(ACMmandioca,factor))
+catsmandioca=apply(ACMmandioca, 2, function(x) nlevels(as.factor(x)))
+#ACM
+ACMTmandioca=MCA(ACMmandioca,ncp=15,graph=F)
+#Clusterização hierarquica
+clustermandioca=HCPC(ACMTmandioca,metric='euclidean',method='ward',nb.clust = 6,graph = F)
+#ACM para feijão
+ACMfeijao=merge(catfeijao,catchuva,by=c('AMC'))
+ACMfeijao=ACMfeijao[,c(2,4:6)]
+ACMfeijao=data.frame(lapply(ACMfeijao,factor))
+catsfeijao=apply(ACMfeijao, 2, function(x) nlevels(as.factor(x)))
+ACMTfeijao=MCA(ACMfeijao,ncp=15,graph=F)
+clusterfeijao=HCPC(ACMTfeijao,metric='euclidean',method='ward',nb.clust=6,graph=F)
+#ACM para leite
+ACMleite=merge(catleite,catchuva,by=c('AMC'))
+ACMleite=ACMleite[,c(2,4:6)]
+ACMleite=data.frame(lapply(ACMleite, factor))
+catsleite=apply(ACMleite, 2, function(x) nlevels(as.factor(x)))
+ACMTleite=MCA(ACMleite,ncp=15,graph=F)
+clusterleite=HCPC(ACMTleite,metric='euclidean',method='ward',nb.clust=6,graph=F)
+#Montar uma tabela com a contribuição de cada dimensão da MCA para explicação da variabilidade total
+#Gráficos
+library(factoextra)
+#MILHO
+#fviz_mca(ACMTmilho)
+# Visualize eigenvalues/variances. As duas linhas seguintes fazem a mesma coisa
+#fviz_eig(ACMTmilho, addlabels=TRUE, hjust = -0.3)+theme_minimal()
+#fviz_screeplot(ACMTmilho)
+#Categorias de variáveis
+#fviz_mca_var(ACMTmilho, col.var="black", shape.var = 15)
+# Contributions of variables on Dim.1
+#fviz_contrib(ACMTmilho, choice = "var", axes = 1)
+# Total contribution on Dim.1 and Dim.2
+#fviz_contrib(ACMTmilho, choice = "var", axes = 1:2)
+# Control category point colors using their contribution
+# Possible values for the argument col.row are :
+# "cos2", "contrib", "coord", "x", "y"
+#fviz_mca_var(ACMTmilho, col.var = "contrib")
+#fviz_mca_biplot(ACMTmilho,col.var = "contrib")+
+#  scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+#                          high="darkblue", midpoint=3)+theme_minimal()
+# Change the gradient color
+#fviz_mca_var(ACMTmilho, col.var="contrib")+
+#  scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+#                        high="darkblue", midpoint=3)+theme_minimal()
+#Milho
+fviz_mca_biplot(ACMTmilho,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#MANDIOCA
+fviz_mca_biplot(ACMTmandioca,col.var = "contrib",label="var", axes = c(1,2),labelsize = 5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#FEIJÃO
+fviz_mca_biplot(ACMTfeijao,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#LEITE
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#########################################
+#ACM para todas as variáveis simultaneamente
+#ACM=merge(catmilho,catleite,by=c('AMC'))
+#ACM=merge(ACM,catmandioca,by=c('AMC'),all.x=T)
+#ACM=merge(ACM,catfeijao,by=c('AMC'),all.x=T)
+#ACM=merge(ACM,catchuva,by=c('AMC'))
+#ACM=as.data.frame(ACM[,c(2:5,7:9)])
+#Converter todas as colunas de um data frame para fator
+#ACM=data.frame(lapply(ACM,factor))
+#ncp: number of dimensions which are kept for the analysis
+#quanti.sup: vector of indexes of continuous supplementary variables
+#quali.sup: vector of indexes of categorical supplementary variables
+#graph: logical. If FALSE, no graph is plotted
+#nb.clust: an integer. If 0, the tree is cut at the level the user clicks on.
+#If -1, the tree is automatically cut at the suggested level (see details).
+#If a (positive) integer, the tree is cut with nb.cluters clusters.
+#Categorias
+#cats=apply(ACM, 2, function(x) nlevels(as.factor(x)))
+#APlicando ACM
+#ACMT=MCA(ACM,ncp=30,graph=F)
+#Pelo que eu entendi o pacote FactoMineR também faz clusterização hierarquica
+#cluster=HCPC(ACMT,metric="euclidean",method="ward",nb.clust = 5,graph=F)
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="rowgreen")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="rowgab")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="rowprincipal")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTfeijao,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#LEITE
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=2,height=2))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=1,height=1))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=NULL,height=NULL))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#LEITE
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=50,height=50))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=0.5,height=0.5))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=0.01,height=0.5))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=0.01,height=0.01))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",)+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot")+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=5,height=5))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=-5,height=-5))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symbiplot",jitter=list(what="label",width=-0.2,height=-0.2))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=-0.2,height=-0.2))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#Milho
+fviz_mca_biplot(ACMTmilho,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#MANDIOCA
+fviz_mca_biplot(ACMTmandioca,col.var = "contrib",label="var", axes = c(1,2),labelsize = 5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#FEIJÃO
+fviz_mca_biplot(ACMTfeijao,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#LEITE
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_screeplot(ACMTmilho)
+compassRose<-function(x,y,rot=0,cex=0.25) {
+oldcex<-par(cex=cex)
+mheight<-strheight("M")
+xylim<-par("usr")
+plotdim<-par("pin")
+xmult<-(xylim[2]-xylim[1])/(xylim[4]-xylim[3])*plotdim[2]/plotdim[1]
+point.angles<-seq(0,7*pi/4,by=pi/4)+pi*rot/180
+crspans<-rep(c(mheight*3,mheight/2),4)
+xpoints<-cos(point.angles)*crspans*xmult+x
+ypoints<-sin(point.angles)*crspans+y
+polygon(xpoints,ypoints)
+txtxpoints<-cos(point.angles[c(1,3,5,7)])*1.33*crspans[1]*xmult+x
+txtypoints<-sin(point.angles[c(1,3,5,7)])*1.33*crspans[1]+y
+text(txtxpoints,txtypoints,c("E","N","W","S"))
+par(oldcex)
+}
+plot(milhomun,border=F,lwd=.1,axes=F,las=1,col=milhomun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -10%","-10% a 0%","0% a 5%","5% a 15%", "Superior a 15%"))
+cores=as.character(c("red","darkorange","yellow","green","darkgreen"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Milho", cex=0.5 )
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(feijaomun,border=F,lwd=.1,axes=F,las=1,col=feijaomun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -10%","-10% a 0%","0% a 5%","5% a 15%", "Superior a 15%"))
+cores=as.character(c("red","darkorange","yellow","green","darkgreen"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Feijão", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(mandiocamun,border=F,lwd=.1,axes=F,las=1,col=mandiocamun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -10%","-10% a 0%","0% a 5%","5% a 15%", "Superior a 15%"))
+cores=as.character(c("red","darkorange","yellow","green","darkgreen"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Mandioca", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(leitemun,border=F,lwd=.1,axes=F,las=1,col=leitemun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -10%","-10% a 0%","0% a 5%","5% a 10%", "Superior a 10%"))
+cores=as.character(c("red","darkorange","yellow","green","darkgreen"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(preciptmun,border=F,lwd=.1,axes=F,las=1,col=preciptmun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -1%","-1% a 0%","0% a 1%","Superior a 1%"))
+cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(semchuvamun,border=F,lwd=.1,axes=F,las=1,col=semchuvamun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -1%","-1% a 0%","0% a 1%","Superior a 1%"))
+cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+plot(maisde25mmmun,border=F,lwd=.1,axes=F,las=1,col=maisde25mmmun@data$cor)
+plot(estados,add=TRUE,lwd=0.5)
+#legenda
+legenda=as.character(c("Inferior a -1%","-1% a 0%","0% a 1%","Superior a 1%"))
+cores=as.character(c("lightskyblue","royalblue3","royalblue4","navy"))
+#legend(x=-72.8,y=-17, legenda, fill=cores, bty="o", title="Leite", cex=0.5)
+legend(x=-72.8,y=-17, legenda, fill=cores, bty="n", cex=0.8 )
+#Adicionando escala ao mapa
+library(maps)
+map.scale(x=-49.6, y=-31.5,relwidth=0.07,metric=T,ratio=T,cex=0.5)
+#Rosa dos ventos
+source(compassRose(-44.4,-26.5))
+#Milho
+fviz_mca_biplot(ACMTmilho,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTmandioca,col.var = "contrib",label="var", axes = c(1,2),labelsize = 5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTmilho,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+fviz_mca_biplot(ACMTmilho,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#MANDIOCA
+fviz_mca_biplot(ACMTmandioca,col.var = "contrib",label="var", axes = c(1,2),labelsize = 5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#FEIJÃO
+fviz_mca_biplot(ACMTfeijao,col.var = "contrib",label="var", axes = c(1,2),labelsize = 6,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+#LEITE
+fviz_mca_biplot(ACMTleite,col.var = "contrib",label="var", axes = c(1,2),labelsize = 4.5,
+pointsize = 1.5,col.ind = "gray67",alpha.ind = 1,title = "",axes.linetype = "dashed",
+map="symmetric",jitter=list(what="label",width=0,height=0))+
+scale_color_gradient2(low="lightblue1", mid="deepskyblue4",
+high="darkblue", midpoint=3)+theme_minimal()
+View(ACMTmilho$eig)
+names(ACMTmilho$eig)
+pve=cbind(ACMTmilho$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTfeijao$eig[,c(2)])
+View(pve)
+pve=cbind(ACMTmilho$eig[,c(2)/100],ACMTmandioca$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTfeijao$eig[,c(2)])
+View(pve)
+pve=cbind(ACMTmilho$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTfeijao$eig[,c(2)])
+View(pve)
+pve=cbind(ACMTmilho$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTfeijao$eig[,c(2)],ACMTleite$eig[,c(2)])
+pve=cbind(ACMTmilho$eig[,c(2)],ACMTmandioca$eig[,c(2)],ACMTfeijao$eig[,c(2)],ACMTleite$eig[,c(2)])
+colnames(pve)=c("milho","mandioca","feijao","leite")
+View(pve)
+setwd(""/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Resultados/Resultados finais/Tabelas)
+setwd("/home/bmiyamoto/Documentos/Pesquisa/Artigo congresso de econometria espacial/Resultados/Resultados finais/Tabelas")
+write.csv(pve,file="percentual da variância explicada",row.names=F)
+clustermandioca=HCPC(ACMTmandioca,metric='euclidean',method='ward')
+clustermandioca=HCPC(ACMTmandioca,metric='euclidean',method='ward')
+clustermilho=HCPC(ACMTmilho,metric="euclidean",method="ward")
+clusterfeijao=HCPC(ACMTfeijao,metric='euclidean',method='ward')
+clusterleite=HCPC(ACMTleite,metric='euclidean',method='ward')
+clusterleite=HCPC(ACMTleite,metric='euclidean',method='ward',nb.clust=7,graph=F)
+clustermandioca=HCPC(ACMTmandioca,metric='euclidean',method='ward',nb.clust = 8,graph = F)
+clusterfeijao=HCPC(ACMTfeijao,metric='euclidean',method='ward',nb.clust=8,graph=F)
+clustermilho=HCPC(ACMTmilho,metric="euclidean",method="ward",nb.clust = 8,graph=F)
+View(clustermilho$data.clust)
+View(clusterfeijao$data.clust)
